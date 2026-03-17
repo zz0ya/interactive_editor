@@ -102,6 +102,7 @@ class InteractiveEditor
         else '' #don't do tricky things if we don't know the Term
       end
     }.each do |k,v|
+      next if `which #{k}`.empty?
       define_method(k) do |*args|
         InteractiveEditor.edit(v || k, self, *args)
       end
